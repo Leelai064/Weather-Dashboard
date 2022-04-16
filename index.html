@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content ="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" conent="ie=edge">
+    <script src="https://kit.fontawesome.com/80833262c1.js" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="" rel=stylesheet">
+    <link rel="stylesheet" type ="text/css" href="style.css">
+    <title> Weather Application</title>
+</head>
+<body>
+    <header class="header">
+        <h1>Weather Application</h1>
+    </header>
+    <div class="container"><div>
+        <div class="search"></div>
+        <div class="row">
+            <h1>Seach for your City:</h1>
+        </div>
+        <div class="row">
+            <input type="text" class="cityInput" placeholder="Severna Park">
+            <button type = "submit" class ="SearchBtn">
+                <i class = "fas fa-search"></i>
+            </button>
+        </div>
+        <div class ="historyItems"></div>
+    </div>
+    <div class ="column2cont">
+        <div class="currentforcase">
+            <div class="row">
+                <h1 class ="cityName">City Name</h1>
+                <h1 class="CurrentDate"></h1>
+                <img class ="cloudicon"></img>
+            </div>
+            <div class ="row">
+                <p class="temp">Temperature:</p>
+            </div>
+            <div class="row">
+                <p class="WindSpeed">Wind Speed:</p>
+            </div>
+            <div class="row">
+                <p class="WindSpeed">Wind Speed:</p>
+            </div>
+            <div class="row">
+                <p class="UVIndex">UV Index:</p>
+            </div>
+        </div>
+        <div class="five-day-forcast">
+            <h1>Five Day Forcase:</h1>
+            <div class="card-row"></div>
+        </div>
+    </div>
+</body>
+
+<script src="weatherapi.script"></script>
+</html>
