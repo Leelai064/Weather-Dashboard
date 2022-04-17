@@ -6,14 +6,12 @@ Utilizing a weather API allows the user to search for different forecase in what
 ```
 
 ## Github Repository Access
-```
+
 https://github.com/Leelai064/Weather-Dashboard
-```
+
 ## Deployed Application URL
-```
->insert web launch here<
-```
+
+https://leelai064.github.io/Weather-Dashboard/
 
 ## Website Visuals
-```
-```
+![InitialWebsite](./assets/Screenshot%20(31).png)
