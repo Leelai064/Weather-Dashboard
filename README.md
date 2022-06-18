@@ -22,8 +22,8 @@ Dependencies:
 3.Sequelize
 4.dotenv package
 5.bcrypt package
-6.express-session (cookies)
-7.connect-session-sequelize
+6.express-session
+7.connect-session-sequ
 ## Website Walkthrough
 
 ## Features
