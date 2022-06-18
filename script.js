@@ -58,7 +58,7 @@ function find(city) {
 function renderCities(event) {
     //to prevent any defaults from occuring
     event.preventDefault();
-    if (searchInput.val().trim()!==""){
+    if (searchInput.val().trim()!==""){ //code does not recognize trim
         city =  searchInput.val().trim();
         currentWeather(city);
     }
@@ -142,7 +142,15 @@ function FiveDayForecast(cityID) {
         }
     });
 }
-
+function UVIndex(long,lat){
+    var uvqURL="https://api.openweathermap.org/data/2.5/uvi?appid="+ APIKey+"&lat="+lt+"&lon="+ln;
+    $.ajax({
+        url:uvqURL,
+        method:"GET"
+    }).then(function(response){
+        $(currentUVIndex).html(response.value);
+    });
+}
     
 //fetch function returns a promise
 // fetch(`http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=${apiKey}`)
@@ -163,7 +171,7 @@ function searchedCityList(){
 }
 function renderlastSavedCity(event){
     var liEl= event.target;
-    if(event.target,matches("li")){
+    if(event.target.matches("li")){ 
         city = liEl.textContent.trim();
         currentWeather(city);
     }

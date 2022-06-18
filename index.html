@@ -18,43 +18,95 @@
     <header class="header">
         <h1>Weather Application</h1>
     </header>
+
     <div class="container"><div>
         <div class="search"></div>
         <div class="row">
             <h1>Search for your City:</h1>
         </div>
+
         <div class="row">
             <input type="text" class="cityInput" placeholder="Severna Park">
             <button type = "submit" class ="SearchBtn">
                 <i class = "fas fa-search"></i>
             </button>
         </div>
-        <ul class ="historyItems"></ul>
+
+        <div class ="row">
+            <ul id=History class ="list-group"></ul>
+    </div>
+    <button class=" btn btn-primary" type="button" id="clearBtn">Clear history</button>
     </div>
     <div class ="column2cont">
+
         <div class="currentforcast">
+
             <div class="row">
+
                 <h1 class ="cityName">City Name</h1>
                 <h1 class="CurrentDate"></h1>
                 <img class ="cloudicon"></img>
+
             </div>
+
             <div class ="row">
                 <p class="temperature">Temperature:</p>
+                
             </div>
+
             <div class="row">
                 <p class="windSpeed">Wind Speed:</p>
             </div>
+
             <div class="row">
                 <p class="humidity">Humidity:</p>
             </div>
+
             <div class="row">
                 <p class="UVindex">UV Index:</p>
             </div>
+
         </div>
+
         <div class="five-day-forcast">
             <h1>Five Day Forcast:</h1>
             <div class="card-row"></div>
+            <div class="container">
+                <div class="row">
+                  <div class="col-sm">
+                    <p id="farenheightDate0"></p>
+                    <p id="farenheightSymbol0"></p>
+                    <p>Temperature:<span id= "farenheightTemperature0"></span></p>
+                    <p>Humidity:<span id= "farenheightHumidity0"></span></p>
+                </div>
+                  <div class="col-sm">
+                    <p id="farenheightDate1"></p>
+                    <p id="farenheightSymbol1"></p>
+                    <p>Temperature:<span id= "farenheightTemperature1"></span></p>
+                    <p>Humidity:<span id= "farenheightHumidity1"></span></p>
+                  </div>
+                  <div class="col-sm">
+                    <p id="farenheightDate2"></p>
+                    <p id="farenheightSymbol2"></p>
+                    <p>Temperature:<span id= "farenheightTemperature2"></span></p>
+                    <p>Humidity:<span id= "farenheightHumidity2"></span></p>
+                  </div>
+                  <div class="col-sm">
+                    <p id="farenheightDate3"></p>
+                    <p id="farenheightSymbol3"></p>
+                    <p>Temperature:<span id= "farenheightTemperature3"></span></p>
+                    <p>Humidity:<span id= "farenheightHumidity3"></span></p>
+                  </div>
+                  <div class="col-sm">
+                    <p id="farenheightDate4"></p>
+                    <p id="farenheightSymbol4"></p>
+                    <p>Temperature:<span id= "farenheightTemperature4"></span></p>
+                    <p>Humidity:<span id= "farenheightHumidity4"></span></p>
+                  </div>
+                </div>
+              </div>
         </div>
+
     </div>
 
     <script src="script.js"></script>
