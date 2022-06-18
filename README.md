@@ -18,3 +18,7 @@ https://leelai064.github.io/Weather-Dashboard/
 ## Website Walkthrough
 
 ## Features
+* HTML
+* CSS
+* JQuery
+* Server-Side API: OpenWeather API
