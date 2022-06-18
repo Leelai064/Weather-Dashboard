@@ -32,8 +32,8 @@ var searchedCity = [];
 var city = "";
 
 //button click jquery handlers
-$("SearchBtn").on("click", DisplayForecast);
-$(document).on("click", renderSearchHistory);
+$("SearchBtn").on("click", FiveDayForecast);
+$(document).on("click", renderlastSavedCity);
 $(window).on("load", renderCities);
 $("#clearSearch").on("click", clearSearch);
 
@@ -117,26 +117,34 @@ function currentWeather(city) {
 // WHEN I view future weather conditions for that city
 // THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
 
-//this function will display five day forcast and current forecast
-// function FiveDayForecast() {
-//     var endofday = false;
-//     var queryforcaseURL = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=" + "&appid=" + apiKey;
-//     $.ajax({
-//         url: queryforcaseURL,
-//         method: "GET"
-//     }).then(function (response) {
+// this function will display five day forcast and current forecast
+function FiveDayForecast(cityID) {
+    var endofday = false;
+    var queryforcastURL = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=" + "&appid=" + apiKey;
+    $.ajax({
+        url: queryforcastURL,
+        method: "GET"
+    }).then(function (response) {
 
-//         for (i = 0; i < 5; i++) {
-//             var currentdate = new Date(response.list[((i + 1) * 8) - 1])
-//         }
-//     }
+        for (i = 0; i < 5; i++) {
+            var currentdate = new Date((response.list[((i + 1) * 8) - 1].dt)*1000).toLocalDateString();
+            var symbolCode= respone.list[((i+1)*8)-1].weather[0].icon;
+            var symbolURL="https://openweathermap.org/img/wn/"+iconcode+".png";
+            var kelvinEquation=response.list[((i+1)*8)-1].main.temp;
+            // var celsiusEquation=;
+            var farenheitEquation=(((tempK-273.5)*1.80)+32).toFixed(2);
+            var humidityEquation=response.list[((i+1)*8)-1].main.humidity;
 
-//     )
-// }
-// function DisplayForecast() {
+            $("#farenheightHumidity" + i).html(humidity+"%");
+            $("#farenheightTemperature" + i).html(tempF+"&#8457");
+            $("#farenheightSymbol" + i).html("<img src=" + symbolURL + ">");
+            $("#farenheightDate" + i).html(date);
+        }
+    });
+}
 
-// }
-// //fetch function returns a promise
+    
+//fetch function returns a promise
 // fetch(`http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=${apiKey}`)
 //     .then(function (response) {
 //         console.log(response);
@@ -147,14 +155,41 @@ function currentWeather(city) {
 //         console.log(data.city.name);
 //     });
 
+function searchedCityList(){
+    var listEl =$("<li>".cities.toUpperCase() + "</li>"); //reference overstackflow tab bookmark.
+    $(listEl).attr("class","list-groupt-item");
+    $(listEl).attr("data-value",c.toUpperCase());
+    $(".list-group").append(listEl);
+}
+function renderlastSavedCity(event){
+    var liEl= event.target;
+    if(event.target,matches("li")){
+        city = liEl.textContent.trim();
+        currentWeather(city);
+    }
+
+}
+//Made a for loop to make a list of past search cities for every city searched it is logged to localstorage and displayed.
+function lastSavedCity(){
+    $("ul").empty();
+    var searchedCity = JSON.parse(localStorage.getItem("cityName"));
+    if(searchedCity!==null){
+        searchedCity=JSON.parse(localStorage.get("cityName"));
+        for(i=0; i<searchedCity.length;i++){
+            addtoList(searchedCity[i]);
+        }
+        city=searchedCity[i-1];
+        currentWeather(city);
+    }
+}
 
 // //when the user wants to clear their search history from local storage.
-// function clearSearch(event) {
-//     event.preventDefault();
-//     searchCity = [];
-//     localStorage.removeItem("City Name");
-//     document.location.reload();
-// }
+function clearSearch(event) {
+    event.preventDefault();
+    searchedCity = [];
+    localStorage.removeItem("City Name");
+    document.location.reload();
+}
 // //look this up^
 // //api key insertion
 // //console log everythinnnng
