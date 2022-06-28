@@ -32,17 +32,43 @@ var long =0.0;
 
 // WHEN I search for a city
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
+var storedCities = function(){
+    localStorage.setItem("cities", JSON.stringify(cities));
+}
+
 //Search function
 var findForecast = function (event) {
    event.preventDefault();
+   var city= cityInput.value.trim();
+   if(city){
+
+   }
+   storedCities(city);
+   localStorageSearches();
+
 }
 
 //Function for displaying the current and future weather to the users window. 
-function renderCities(event) {
-   
+//FETCH our weather data
+// We must create an AJAX call and build our URL to get the data from the API
+var renderCities = function(city) {
+    var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+
+    fetch(apiUrl).then(function(response){
+        response.json().then(function(weatherdata){
+            currentWeather(weatherdata,city);
+            //longitude and latitude coordinates used in API to identify the city that we're asking of it.
+            long = data.coord.long;
+            lat = data.coord.lat;
+            FiveDayForecast(city);
+        });
+    });
 }
 
-// We must create an AJAX call and build our URL to get the data from the API
+//We need the windspeed,humidity,temperature,weatherimgs, and weather data display variables.
+//moment.js for date
+//image/icons url build found in documentation
+//add temp, windspeed, and humidity data to our span id in the bootstrap column container
 function currentWeather(city) { //maybe use jquery for links *suggestion*
     
 }
@@ -62,7 +88,7 @@ function UVIndex(long,lat){
 //Searched city data stored in local storage and rendered
     
 
-function searchedCityList(){
+function searchedCityList(searc){
   
 }
 
