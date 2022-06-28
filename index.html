@@ -5,110 +5,52 @@
     <meta name="viewport" content ="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" conent="ie=edge">
     <script src="https://kit.fontawesome.com/80833262c1.js" crossorigin="anonymous"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script
-    type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
-  ></script>
     <link href="" rel="stylesheet">
     <link rel="stylesheet" type ="text/css" href="style.css">
     <title> Weather Application</title>
 </head>
 <body>
     <header class="header">
-        <h1>Weather Application</h1>
+        <h1>Your Five Day Forecast!</h1>
     </header>
 
     <div class="container"><div>
-        <div class="search"></div>
-        <div class="row">
-            <h1>Search for your City:</h1>
+        <div class="col-12 col-md-3 p-2 seach-column">
+            <form class="border p-2" id="cityForm">
+                <h4>Enter City Name</h4>
+                <input type="text" id="city" class="form-input"></input>
+                <button class="btn btn-primary" type="submit">
+                    &#x1F50E; </button>
+            </form>
+
+            <div class="past-search boarder" id="past-search-buttons"></div>
+        
         </div>
-
-        <div class="row">
-            <input type="text" class="cityInput" placeholder="Severna Park">
-            <button type = "submit" class ="SearchBtn">
-                <i class = "fas fa-search"></i>
-            </button>
-        </div>
-
-        <div class ="row">
-            <ul id=History class ="list-group"></ul>
-    </div>
-    <button class=" btn btn-primary" type="button" id="clearBtn">Clear history</button>
-    </div>
-    <div class ="column2cont">
-
-        <div class="currentforcast">
-
-            <div class="row">
-
-                <h1 class ="cityName">City Name</h1>
-                <h1 class="CurrentDate"></h1>
-                <img class ="cloudicon"></img>
-
-            </div>
-
-            <div class ="row">
-                <p class="temperature">Temperature:</p>
-                
-            </div>
-
-            <div class="row">
-                <p class="windSpeed">Wind Speed:</p>
-            </div>
-
-            <div class="row">
-                <p class="humidity">Humidity:</p>
-            </div>
-
-            <div class="row">
-                <p class="UVindex">UV Index:</p>
-            </div>
-
-        </div>
-
-        <div class="five-day-forcast">
-            <h1>Five Day Forcast:</h1>
-            <div class="card-row"></div>
-            <div class="container">
-                <div class="row">
-                  <div class="col-sm">
-                    <p id="farenheightDate0"></p>
-                    <p id="farenheightSymbol0"></p>
-                    <p>Temperature:<span id= "farenheightTemperature0"></span></p>
-                    <p>Humidity:<span id= "farenheightHumidity0"></span></p>
+            
+        <div class="col-12 col-md-9">
+            <div class="row border selected-city" id="currentForecast">
+                <div class="col-12 currentW">
+                    <h2 id="searchedCity"></h2>
+                    <div id="currentWeatherForm" class="list-group">
+                        <p id="currentDate"></p>
+                        <span id="currentTemperature" class="list-group-item"></span>
+                        <span id="currentHumidity" class="list-group-item"></span>
+                        <span id="currentWindseed" class="list-group-item"></span>
+                        <div><span id="currentUV" class="list-group-item "></span></div>
+                    </div>
                 </div>
-                  <div class="col-sm">
-                    <p id="farenheightDate1"></p>
-                    <p id="farenheightSymbol1"></p>
-                    <p>Temperature:<span id= "farenheightTemperature1"></span></p>
-                    <p>Humidity:<span id= "farenheightHumidity1"></span></p>
-                  </div>
-                  <div class="col-sm">
-                    <p id="farenheightDate2"></p>
-                    <p id="farenheightSymbol2"></p>
-                    <p>Temperature:<span id= "farenheightTemperature2"></span></p>
-                    <p>Humidity:<span id= "farenheightHumidity2"></span></p>
-                  </div>
-                  <div class="col-sm">
-                    <p id="farenheightDate3"></p>
-                    <p id="farenheightSymbol3"></p>
-                    <p>Temperature:<span id= "farenheightTemperature3"></span></p>
-                    <p>Humidity:<span id= "farenheightHumidity3"></span></p>
-                  </div>
-                  <div class="col-sm">
-                    <p id="farenheightDate4"></p>
-                    <p id="farenheightSymbol4"></p>
-                    <p>Temperature:<span id= "farenheightTemperature4"></span></p>
-                    <p>Humidity:<span id= "farenheightHumidity4"></span></p>
-                  </div>
-                </div>
-              </div>
-        </div>
+            </div>
+        
+        <div class="row currentW" id="fiveDayForecast"></div>
+        <h2 class="col-12" id="forecast"> </h2>
+        <div class="d-flex" id="fiveDayForecastForm"></div>
+
+
 
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="script.js"></script>
 
 </body>
