@@ -10,44 +10,59 @@
     <title> Weather Application</title>
 </head>
 <body>
-    <header class="header">
+    <header class="container-fluid text-center text-white bg-primary p-2">
         <h1>Your Five Day Forecast!</h1>
     </header>
 
-    <div class="container"><div>
-        <div class="col-12 col-md-3 p-2 seach-column">
-            <form class="border p-2" id="cityForm">
-                <h4>Enter City Name</h4>
-                <input type="text" id="city" class="form-input"></input>
-                <button class="btn btn-primary" type="submit">
-                    &#x1F50E; </button>
-            </form>
-
-            <div class="past-search boarder" id="past-search-buttons"></div>
-        
-        </div>
-            
-        <div class="col-12 col-md-9">
-            <div class="row border selected-city" id="currentForecast">
-                <div class="col-12 currentW">
-                    <h2 id="searchedCity"></h2>
-                    <div id="currentWeatherForm" class="list-group">
-                        <p id="currentDate"></p>
-                        <span id="currentTemperature" class="list-group-item"></span>
-                        <span id="currentHumidity" class="list-group-item"></span>
-                        <span id="currentWindseed" class="list-group-item"></span>
-                        <div><span id="currentUV" class="list-group-item "></span></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 bg-dark">
+                <h5 class="mt-2">Enter City Name:</h5>
+                <div class="input-group mb-3">
+                    <input id="enterCity" type="text" class="form-control" placeholder="Enter a city"
+                        aria-label="Enter a city">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="searchButton">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
                 </div>
+                <div class="border-top border-primary" id="pastSearches"></div>
+                <button class="btn btn-primary mb-3" type="button" id="clearHistory">Clear history</button>
+                <form id="history"></form>
+                <!-- Past city searches begin  -->
             </div>
-        
-        <div class="row currentW" id="fiveDayForecast"></div>
-        <h2 class="col-12" id="forecast"> </h2>
-        <div class="d-flex" id="fiveDayForecastForm"></div>
-
-
-
+            <div class="col-lg-9">
+                <div class="row mr-0">
+                    <div class="col-lg-2 card m-3 d-none" id="CurrentWeather">
+                        <div class="card-body">
+                            <h3 id="cityName" class="cityName align-middle"></h3>
+                            <img id="current-pic" alt="">
+                        </div>
+                        <div class="col-lg-2 card m-3 d-none">
+                            <ul>
+                                <li><p id="temperature"></p></li>
+                                <li><p id="humidity"></p></li>
+                                <li><p id="windSpeed"></p></li>
+                                <li><p id="uvIndex"></p></li>
+                            </ul>
+                        </div>
+                        <!-- create a new container add flex properties to container -->
+                    </div>
+                </div>
+               
+                <!-- Current city 5 day forecast begin  -->
+                <div class="row" id="currentConditions"></div>
+                
+                <div class="row" id="fiveDayForecastHeader"></div>
+                <div class="d-flex flex-row flex-wrap justify-content-between" id="fiveDayForecast"></div>
+            </div>
+            
+            
+        </div>
     </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>

@@ -13,22 +13,19 @@
 //API Key connection and important search variables for user interaction
 var apiKey = "43ba0298f7a8d5140e365181bc0de745";
 
-//Query variables tied to HTML forms and ID's
-var city = document.querySelector("#city");
-var cityFormEL = document.querySelector("#cityForm");
-var cityInput = document.querySelector("#city");
-var weatherForm = document.querySelector("#currentWeatherForm");
-var searchedCity = document.querySelector("#searchedCity");
-var currentForcast = document.querySelector("#currentForecast");
-var forecastForm =  document.querySelector("#fiveDayForecastForm")
-var searchButton = document.querySelector("#searchButton");
-//Search and Clear buttons stated in jquery
-var searchBtn = document.querySelector("#searchBtn");
+//Query variables 
+var cityFormEl = $('#enter-city');
+var searchBtn = $('#searchButton');
+var clearBtn = $('#clearHistory');
+var searchedCitiesEl = $('#pastSearches');
 
-//location data
-var searchedCity = [];
-var lat = 0.0;
-var long =0.0;
+var currentCity;
+
+//onClick Eventlistners (jquery edition)
+
+searchBtn.on("click", handleCityFormSubmittion);
+clearBtn.on("click", handleClearHistory);
+searchedCitiesEl.on("click",retrievePastCity);
 
 // WHEN I search for a city
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
@@ -78,8 +75,19 @@ function currentWeather(city) { //maybe use jquery for links *suggestion*
 // THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
 
 // this function will display five day forcast and current forecast
-function FiveDayForecast(city) { //add city data a var
-   
+var FiveDayForecast = function(city) { //add city data a var
+    var apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&cnt=5&units=imperial&appid=${apiKey}`
+
+    fetch(apiUrl)
+    .then(function(respone){
+        response.json().then(function(weatherdata){
+            displayForcast(weatherdata);
+        });
+    });
+};
+
+var displayForcast = function(weather){
+    fore
 }
 // UV index data pulled from the API
 function UVIndex(long,lat){
@@ -88,7 +96,7 @@ function UVIndex(long,lat){
 //Searched city data stored in local storage and rendered
     
 
-function searchedCityList(searc){
+function searchedCityList(search){
   
 }
 
