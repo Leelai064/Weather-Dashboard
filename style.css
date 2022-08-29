@@ -1,28 +1,165 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    height:100%;
-    margin: 0;
-    background-color: #bed1e6;
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #bed1e6;
 }
-button{
-    width: 70px;
-    height: auto;
-    background-color: gainsboro;
-    border: none; 
-    border-radius: 5px;
-    transition-duration: .5s;
+/* Button CSS Starts Here */
+button {
+  width: 70px;
+  height: auto;
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 0.5s;
 }
-button:hover{
-    background-color:aquamarine;
+button:hover {
+  background-color: aquamarine;
 }
-button:focus{
-    border: none;
-    outline-color: black;
+button:focus {
+  border: none;
+  outline-color: black;
 }
+/* Button CSS Ends Here */
+
 /* Allows the search and forecast display to be shown side by side */
-.weather-container{
-    display:inline-block;
+/* Forecast CSS Starts Here */
+.weather-container {
+  display: inline-block;
+}
+
+/*Header tags are are all blocked here!!*/
+h2 {
+    display: grid;
+    padding: 5px;
+  }
+  h5 {
+    color: #121212;
+  }
+/*Header tags are are all blocked here!!*/
+nav {
+  display: block;
+  width: 100%;
+  height: 75px;
+  background-color: #818eb1;
+}
+
+.searchbar {
+  display: inline-block;
+}
+
+aside {
+  background-color: #7ba4d4;
+  flex-direction: column;
+  width: 10%;
+  height: 500px;
+}
+
+.forcast {
+  display: flex;
+  width: 85%;
+}
+
+.five-day {
+  display: flex;
+  width: 85%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin-block: 2rem;
+  gap: 2rem;
+}
+
+img {
+  width: 80px;
+  display: block;
+  object-fit: cover;
+}
+
+/* Card Edits!!! */
+.card {
+  display: flex;
+  flex-direction: column;
+  width: clamp(20rem, calc(20rem + 2vw), 22rem);
+  overflow: hidden;
+  box-shadow: 0 0.3rem 3rem rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  background: #7ba4d4;
+
+}
+
+.card__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.tag {
+  align-self: flex-start;
+  padding: 0.25em 0.75em;
+  border-radius: 1em;
+  font-size: 0.75rem;
+}
+
+.tag + .tag {
+  margin-left: 0.5em;
+}
+
+.tag-blue {
+  background: #56ccf2;
+  background: linear-gradient(to bottom, #2f80ed, #56ccf2);
+  color: #fafafa;
+}
+
+.tag-brown {
+  background: #d1913c;
+  background: linear-gradient(to bottom, #ffd194, #d1913c);
+  color: #fafafa;
+}
+
+.tag-red {
+  background: #cb2d3e;
+  background: linear-gradient(to bottom, #ef473a, #cb2d3e);
+  color: #fafafa;
+}
+
+.card__body h4 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+.card__footer {
+  display: flex;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.user {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.user__image {
+  border-radius: 50%;
+}
+
+.user__info > small {
+  color: #666;
+}
+
+/* Card css ends here!! */
+
+#currentConditions {
+  background-color: #7ba4d4;
+  border-radius: 35px;
+  margin: 2px;
+  text-align: -webkit-center;
 }

@@ -9,35 +9,35 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Weather App</title>
+    <title>Your Daily Weather Application!</title>
 </head>
 
 <body>
-    <header class="container-fluid text-center text-white bg-primary p-2">
-        <h1>Weather App</h1>
+    <header class="container-fluid text-center text-white bg-info p-3">
+        <h1>Your Daily Weather Application!</h1>
     </header>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 ">
-                <h5 class="mt-2">Search for a City:</h5>
+                <h5 class="mt-2">Search for Your City:</h5>
                 <div class="input-group mb-3">
                     <input id="enter-city" type="text" class="form-control" placeholder="Enter a city"
                         aria-label="Enter a city">
                     <div class="input-group-append">
-                        <button class="btn btn-primary" type="button" id="search-button">
+                        <button class="btn btn-outline-dark" type="button" id="search-button">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </div>
-                <div class="border-top border-primary" id="past-searches"></div>
-                <button class="btn  mb-4" type="button" id="clear-history">Clear history</button>
+                <div class="border-top" id="past-searches"></div>
+                <button class="btn btn-outline-dark  mb-4" type="button" id="clear-history">Clear history</button>
                 <form id="history"></form>
                 <!-- Past city searches will go here  -->
             </div>
             <div class="col-lg-9">
                 <div class="row mr-0">
-                    <div class="col-lg-2 card m-3 d-none" id="today-weather">
+                    <div class="col-lg-2  card m-3 d-none" id="today-weather">
                         <div class="card-body">
                             <h3 id="city-name" class="city-name align-middle"></h3>
                             <img id="current-pic" alt="">
