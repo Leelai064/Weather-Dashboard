@@ -14,10 +14,10 @@
 var apiKey = "43ba0298f7a8d5140e365181bc0de745";
 
 //Query variables 
-var cityFormEl = $('#cityInput');
-var searchBtn = $('#searchButton');
-var clearBtn = $('#clearHistory');
-var searchedCitiesEl = $('#pastSearches');
+var cityInputEl = $('#enter-city');
+var searchBtn = $('#search-button');
+var clearBtn = $('#clear-history');
+var pastSearchedCitiesEl = $('#past-searches');
 
 var currentCity;
 
@@ -25,7 +25,7 @@ var currentCity;
 
 searchBtn.on("click", handleCityFormSubmittion);
 clearBtn.on("click", clearSearch);
-searchedCitiesEl.on("click", lastSavedCity);
+pastSearchedCitiesEl.on("click", lastSavedCity);
 
 // WHEN I search for a city
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
@@ -38,61 +38,62 @@ function fetchWeather(data) {
         })
         .then(function (data) {
 
-            // current weather
+           //These two lines below will display the searched credentials
             var currentConditionsEl = $('#currentConditions');
             currentConditionsEl.addClass('border border-primary');
 
-            // create city name element and display
+            // Below are the credentials that I'll list that will be displayed to the viewport by direct injection into the HTML code.
             var cityNameEl = $('<h2>');
             cityNameEl.text(currentCity);
             currentConditionsEl.append(cityNameEl);
 
-            // get date from results and display by appending to city name element
+           //display the city data credentials
             var currentCityDate = data.current.dt;
             currentCityDate = moment.unix(currentCityDate).format("MM/DD/YYYY");
             var currentDateEl = $('<span>');
             currentDateEl.text(` (${currentCityDate}) `);
             cityNameEl.append(currentDateEl);
 
-            // get weather icon and display by appending to city name element            
+            //icon/display that is directly linked to the city name element credentials         
             var currentCityWeatherIcon = data.current.weather[0].icon; // current weather icon
             var currentWeatherIconEl = $('<img>');
             currentWeatherIconEl.attr("src", "http://openweathermap.org/img/wn/" + currentCityWeatherIcon + ".png");
             cityNameEl.append(currentWeatherIconEl);
 
-            // get current temp data and display
+          // current temperature data credentials will be displayed above the five day forecast like the data above
             var currentCityTemp = data.current.temp;
             var currentTempEl = $('<p>')
             currentTempEl.text(`Temp: ${currentCityTemp}°F`)
             currentConditionsEl.append(currentTempEl);
 
-            // get current wind speed and display
+            //windspeed credentials will be displayed below
             var currentCityWind = data.current.wind_speed;
             var currentWindEl = $('<p>')
-            currentWindEl.text(`Wind: ${currentCityWind} MPH`)
+            currentWindEl.text(` Wind: ${currentCityWind} MPH `)
             currentConditionsEl.append(currentWindEl);
 
-            // get current humidity and display
+           //humidity will be displayed below
             var currentCityHumidity = data.current.humidity;
             var currentHumidityEl = $('<p>')
-            currentHumidityEl.text(`Humidity: ${currentCityHumidity}%`)
+            currentHumidityEl.text(` Humidity: ${currentCityHumidity}% `)
             currentConditionsEl.append(currentHumidityEl);
 
-            // get current UV index, set background color based on level and display
+            //UV data credentials listed below
             var currentCityUV = data.current.uvi;
             var currentUvEl = $('<p>');
-            var currentUvSpanEl = $('<span>');
+            var currentUvSpanEl = $('<span>'); //Without this span the cards for each element credential needed will not display!!
             currentUvEl.append(currentUvSpanEl);
+            
+            currentUvSpanEl.text(` UV: ${currentCityUV} `)
 
-            currentUvSpanEl.text(`UV: ${currentCityUV}`)
-
+                // Once the UV is display the data cycles through these if else statements and if the UV fits the criteria, the color it matches will highlight the UV credential
             if (currentCityUV < 3) {
                 currentUvSpanEl.css({ 'background-color': 'green', 'color': 'white' });
-            } else if (currentCityUV < 6) {
+            }  else if (currentCityUV < 6) {
                 currentUvSpanEl.css({ 'background-color': 'yellow', 'color': 'black' });
-            } else if (currentCityUV < 8) {
+            }  else if (currentCityUV < 8) {
                 currentUvSpanEl.css({ 'background-color': 'orange', 'color': 'white' });
-            } else if (currentCityUV < 11) {
+            }  else if (currentCityUV < 11) {
                 currentUvSpanEl.css({ 'background-color': 'red', 'color': 'white' });
             } else {
                 currentUvSpanEl.css({ 'background-color': 'violet', 'color': 'white' });
@@ -100,11 +101,10 @@ function fetchWeather(data) {
 
             currentConditionsEl.append(currentUvEl);
 
-            // 5 - Day Forecast
-            // create 5 Day Forecast <h2> header
+           //Here the five day forecast will be displayed
             var fiveDayForecastHeaderEl = $('#fiveDayForecastHeader');
             var fiveDayHeaderEl = $('<h2>');
-            fiveDayHeaderEl.text('5-Day Forecast:');
+            fiveDayHeaderEl.text('Five Day Projected Forecast:');
             fiveDayForecastHeaderEl.append(fiveDayHeaderEl);
 
             var fiveDayForecastEl = $('#fiveDayForecast');
@@ -116,6 +116,7 @@ function fetchWeather(data) {
                 var icon;
                 var wind;
                 var humidity;
+                var uvi;
 
                 date = data.daily[i].dt;
                 date = moment.unix(date).format("MM/DD/YYYY");
@@ -124,6 +125,7 @@ function fetchWeather(data) {
                 icon = data.daily[i].weather[0].icon;
                 wind = data.daily[i].wind_speed;
                 humidity = data.daily[i].humidity;
+                uvi = data.daily[i].uvi;
 
                 // create a card
                 var card = document.createElement('div');
@@ -131,12 +133,14 @@ function fetchWeather(data) {
 
                 // create card body and append
                 var cardBody = document.createElement('div');
-                cardBody.classList.add('cardBody');
+                cardBody.classList.add('card-body');
                 cardBody.innerHTML = `<h6>${date}</h6>
                                       <img src= "http://openweathermap.org/img/wn/${icon}.png"> </><br>
                                        ${temp}°C<br>
                                        ${wind} KPH <br>
-                                       ${humidity}%`
+                                       ${humidity}%<br>
+                                       ${uvi}
+                                       `
 
                 card.appendChild(cardBody);
                 fiveDayForecastEl.append(card);
@@ -145,27 +149,25 @@ function fetchWeather(data) {
     return;
 }
 
-
-
-//Function for displaying the current and future weather to the users window. 
-//FETCH our weather data
-// We must create an AJAX call and build our URL to get the data from the API
-function renderSearchedCities () {
+// Display search history as buttons
+function renderSearchedCities() {
     var storedCities = JSON.parse(localStorage.getItem("cities")) || [];
-    var pastSearchesEl = document.getElementById('pastSearches');
+    var pastSearchesEl = document.getElementById('past-searches');
 
     pastSearchesEl.innerHTML = '';
 
     for (i = 0; i < storedCities.length; i++) {
 
         var pastCityBtn = document.createElement("button");
-        pastCityBtn.classList.add("btn", "btn-primary", "my-2", "pastCities");
+        pastCityBtn.classList.add("btn", "btn-primary", "my-2", "past-city");
         pastCityBtn.setAttribute("style", "width: 100%");
         pastCityBtn.textContent = `${storedCities[i].city}`;
         pastSearchesEl.appendChild(pastCityBtn);
     }
+    return;
 }
 
+// use Open Weather 'Current weather data (API)' to get city coordinates to then send to 'One Call API' to get weather
 function coordinateFetch() {
     var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}`;
     var storedCities = JSON.parse(localStorage.getItem("cities")) || [];
@@ -189,7 +191,7 @@ function coordinateFetch() {
             storedCities.push(cityInfo);
             localStorage.setItem("cities", JSON.stringify(storedCities));
 
-            displaySearchHistory();
+            renderSearchedCities();
 
             return cityInfo;
         })
@@ -199,13 +201,10 @@ function coordinateFetch() {
     return;
 }
 
-
-
-
-// local storage variable and clear function(s) below
+// handle requst to clear past search history
 function clearSearch(event) {
     event.preventDefault();
-    var pastSearchesEl = document.getElementById('pastSearches');
+    var pastSearchesEl = document.getElementById('past-searches');
 
     localStorage.removeItem("cities");
     pastSearchesEl.innerHTML = '';
@@ -214,10 +213,10 @@ function clearSearch(event) {
 }
 
 function clearCurrentCityWeather() {
-    var currentConditionsEl = document.getElementById("currentWeather");
+    var currentConditionsEl = document.getElementById("currentConditions");
     currentConditionsEl.innerHTML = '';
 
-    var fiveDayForecastHeaderEl = document.getElementById("fiveDayForecastTitle");
+    var fiveDayForecastHeaderEl = document.getElementById("fiveDayForecastHeader");
     fiveDayForecastHeaderEl.innerHTML = '';
 
     var fiveDayForecastEl = document.getElementById("fiveDayForecast");
@@ -225,23 +224,26 @@ function clearCurrentCityWeather() {
 
     return;
 }
-//When city name is submited this function handles this request by sending to the function that gets that cities coordinates.
-function  handleCityFormSubmittion(event) {
+
+// handle submit of city name by trimming and sending to getCoordinates function, clear HTML display of past weather data, cards, titles
+function handleCityFormSubmittion(event) {
     event.preventDefault();
-    currentCity = cityFormEl.val().trim();
-    clearSearch();
+    currentCity = cityInputEl.val().trim();
+
+    clearCurrentCityWeather();
     coordinateFetch();
 
     return;
 }
-// This function allows the user to see an updated forcast that is retrieved and displayed only after the previously search city eventlistner has been click.
+
+// When user clicks on city previously searched, an updated forecast will be retrieved and displayed
 function lastSavedCity(event) {
     var element = event.target;
 
-    if (element.matches(".pastCities")) {
+    if (element.matches(".past-city")) {
         currentCity = element.textContent;
 
-        clearSearch();
+        clearCurrentCityWeather();
 
         var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&appid=${apiKey}`;
 
@@ -268,5 +270,5 @@ function lastSavedCity(event) {
     return;
 }
 
-// clear functions end here
 renderSearchedCities();
+
