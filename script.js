@@ -59,9 +59,12 @@ function localStorageFetch(){
 
 }
 function clearHistory(){
-
+    event.preventDefault();
+    localStorage.removeItem("cities");
+    pastSearchedCitiesEl.innerHTML = [];
+    var pastSearchedCitiesEl = document.getElementById("past-searches");
     //When the user clicks the clear button the history is wiped from the viewport and localstorage!!!
-
+ console.log("Goodbye World!");
 }
 
 function temperatureConversion(){
@@ -81,5 +84,6 @@ function renderHistory(){
         }
     }
     //this function will display the weather!!
+    console.log('WELCOME TO THIS WEEKS WEATHER FORCAST!');
     return;
 }
