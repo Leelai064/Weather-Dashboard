@@ -27,24 +27,34 @@ function weatherFetch(data){
         
 
         //UV Index
+        var uvIndex = 
         //Need a conditional block for each color that displays the level of UV
 
         //Weather both and F and C(Make this another eventlistner or maybe a timer)
-
+        var temperature= data.list.main.temp;
         //Wind Speed
-
+        var windMPH = data.list.wind.speed;
         //Humidity
 
         //Icons to appear!!
 
         //Note we need 5 days to broadcast!
+
+        cityCoordinates();
     }
 function cityCoordinates(){
     //taking the data
+    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=" + city + + apiKey;
+    var lat = data.coord.lat;
+    var long = data.cord.long;
+    var coordinate = lat + long;
+
+   
 
 }
 function localStorageFetch(){
 
+   
     //This function will FETCH the searched cities and display them on the history block
 
 }
@@ -61,5 +71,15 @@ function temperatureConversion(){
 
 function renderHistory(){
 
+    for (var i  = 0; i < cityCoordinates.length; i++){
+        if($('#search-button')= true) {
+            var searchedCity = document.createElement("button");
+            searchedCity.classList.add("btn", "btn-outline-dark", "my-2", "searchedCity");
+            searchedCity.setAttribute("style","width: 100%")
+            // $('#search-button').fadeIn('slow');
+            pastSearchedCitiesEl.appendChile(searchedCity).fadeIn('slow');
+        }
+    }
     //this function will display the weather!!
+    return;
 }
